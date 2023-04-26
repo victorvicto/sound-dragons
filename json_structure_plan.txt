@@ -1,0 +1,130 @@
+place détermine les sounds selectionnés.
+La music sélectionnée est indiquée en fonction du music context sélectionné et
+de ce que la place dit pour ce music context. Si le context n'est pas défini par la place,
+on choisi basé sur ce qu'indique le music context général.
+La region override les fichiers utilisés pour les musics et les sounds.
+Les regions peuvent également modifier les places (ou en ajouter).
+
+"sounds":{
+    sound name:{
+        "files": [ -> multiple sound files, one of them will be picked at random
+            string to file
+        ],
+        "quicksound category": category ("main", "jingle", "fight sound", ...)
+    }
+},
+"musics":{
+    music name:{
+        "audio": string to file
+    }
+},
+"music contexts":{
+    name of context("main", "scary fight", "mystery",...):{
+        "musics": [ -> multiple songs, one of them will be picked at random
+            {
+                "music": music name,
+                "volume": int from 0 to 100
+            }
+        ],
+        "music modifiers":{
+            name of modifier("day", "night", "winter",...):{
+                "musics": [ -> multiple songs, one of them will be picked at random
+                    {
+                        "music": music name,
+                        "volume": int from 0 to 100
+                    }
+                ],
+            }
+        }
+    }
+},
+"transitions":{
+    transition name:{
+        "time": int for fondu time in seconds,
+        "play": {
+            sound name:{
+                "timing": num seconds before playing sound
+            }
+        }
+    }
+},
+"places":{
+    place name:{ -> one of the places will be called "default"
+        "ambience":{
+            sound name:{
+                "volume": num from 0 to 100,
+                "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
+            }
+        },
+        "ambience modifiers":{
+            name of modifier("day", "night", "winter",...):{
+                "changes":{
+                    sound name:{ -> if sound name not in "ensemble" add it -> to remove sound, set volume to 0
+                        "volume": int from 0 to 100,
+                        "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
+                    }
+                }
+            }
+        },
+        ("music override":{
+            name of music context("main", "fight", "mystery",...):{
+                "musics": [
+                    {
+                        "music": name of music,
+                        "volume": int from 0 to 100
+                    }
+                ],
+                "music modifiers":{
+                    name of modifier("day", "night", "winter",...):{
+                        "musics": [ -> multiple songs, one of them will be picked at random
+                            {
+                                "music": music name,
+                                "volume": int from 0 to 100
+                            }
+                        ],
+                    }
+                }
+            }
+        }),
+        ( -> idée pour le futur
+            "outdoors": true or false,
+            "last outdoors volume": int from 0 to 100 to say how much you hear the muffled outdoors
+        )
+    }
+},
+"regions":{
+    region name: {
+        "sounds override":{ -> ajoute des sounds pour dans le place override, ou modifie des sons pour que places utilise les sounds d'ici plutôt que dans le sound principal
+            sound name:{
+                "files": [
+                    string to file
+                ]
+            }
+        },
+        "music contexts override":{
+            name of music context("main", "fight", "mystery",...):{
+                "musics": [
+                    {
+                        "music": name of music,
+                        "volume": int from 0 to 100
+                    }
+                ],
+                "music modifiers":{
+                    name of modifier("day", "night", "winter",...):{
+                        "musics": [ -> multiple songs, one of them will be picked at random
+                            {
+                                "music": music name,
+                                "volume": int from 0 to 100
+                            }
+                        ],
+                    }
+                }
+            }
+        },
+        "places override":{
+            place name:{ -> can be existing place to override ambiance/ambiance modifiers/music averride
+                *same as in places, but every part is optional*
+            }
+        }
+    }
+}

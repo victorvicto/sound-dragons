@@ -1,0 +1,108 @@
+place détermine les sounds selectionnés.
+La music sélectionnée est indiquée en fonction du music context sélectionné et
+de ce que la place dit pour ce music context. Si le context n'est pas défini par la place,
+on choisi basé sur ce qu'indique le music context général.
+La region override les fichiers utilisés pour les musics et les sounds.
+Les regions peuvent également modifier les places (ou en ajouter).
+
+"sounds":{
+    sound name:{
+        "files": [ -> multiple sound files, one of them will be picked at random
+            string to file
+        ]
+    }
+},
+"themes":{
+    music theme name:[ -> multiple songs, one of them will be picked at random
+        {
+            "file": string to file,
+            "volume": int from 0 to 100
+        }
+    ]
+},
+"transitions":{
+    transition name:{
+        "time": int for fondu time in seconds,
+        "play": {
+            sound name:{
+                "timing": num seconds before playing sound
+            }
+        }
+    }
+},
+"music contexts":{
+    name of context("main", "scary fight", "mystery",...):{
+        "theme":{
+            "name": theme name,
+            "volume mul": int from 0 to 100
+        },
+        "theme modifiers":{
+            name of modifier("day", "night", "winter",...):{
+                "theme":{
+                    "name": theme name,
+                    "volume mul": int from 0 to 100
+                },
+            }
+        }
+    }
+},
+"places":{
+    place name:{ -> one of the places will be called "default"
+        "ambience":{
+            sound name:{
+                "volume": num from 0 to 100,
+                "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
+            }
+        },
+        "ambience modifiers":{
+            name of modifier("day", "night", "winter",...):{
+                "changes":{
+                    sound name:{ -> if sound name not in "ambiance" add it -> to remove sound, set volume to 0
+                        "volume": int from 0 to 100,
+                        "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
+                    }
+                }
+            }
+        },
+        "music contexts":{
+            name of context("main", "scary fight", "mystery",...):{
+                "theme":{
+                    "name": theme name,
+                    "volume mul": int from 0 to 100
+                },
+                "theme modifiers":{
+                    name of modifier("day", "night", "winter",...):{
+                        "theme":{
+                            "name": theme name,
+                            "volume mul": int from 0 to 100
+                        },
+                    }
+                }
+            }
+        }
+    }
+},
+"regions":{
+    region name: {
+        "sounds override":{ -> ajoute des sounds pour dans le place override, ou modifie des sons pour que places utilise les sounds d'ici plutôt que dans le sound principal
+            sound name:{
+                "files": [
+                    string to file
+                ]
+            }
+        },
+        "themes override":{
+            music theme name:[ -> multiple songs, one of them will be picked at random
+                {
+                    "file": string to file,
+                    "volume": int from 0 to 100
+                }
+            ]
+        },
+        "places override":{
+            place name:{
+                *same as in places, but every part is optional*
+            }
+        }
+    }
+}

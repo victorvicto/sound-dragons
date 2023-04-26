@@ -1,0 +1,197 @@
+{
+    "sounds":{
+        "trees wind":{
+            "files": [
+                "sounds/trees.mp3"
+            ],
+            "quicksound category": "long"
+        },
+        "birds":{
+            "files": [
+                "sounds/birds.mp3"
+            ],
+            "quicksound category": "long"
+        },
+        "door":{
+            "files": [
+                "sounds/door.mp3"
+            ],
+            "quicksound category": "indoors"
+        },
+        "fireplace":{
+            "files": [
+                "sounds/fireplace.mp3"
+            ],
+            "quicksound category": "fire"
+        },
+        "shop bell":{
+            "files": [
+                "sounds/shop_bell.mp3"
+            ],
+            "quicksound category": "indoors"
+        },
+        "writing":{
+            "files": [
+                "sounds/writing.mp3"
+            ],
+            "quicksound category": "indoors"
+        },
+        "pages turned":{
+            "files": [
+                "sounds/pages_turned.mp3"
+            ],
+            "quicksound category": "indoors"
+        },
+        "wood squeeking":{
+            "files": [
+                "sounds/wood_squeeking.mp3"
+            ],
+            "quicksound category": "indoors"
+        },
+        "steps on wood":{
+            "files": [
+                "sounds/steps on wood.mp3"
+            ],
+            "quicksound category": "indoors"
+        }
+    },
+    "musics":{
+        "quiet zelda adventure":{
+            "file": "musics/quiet_zelda_adventure.mp3"
+        },
+        "medieval adventure":{
+            "file": "musics/medieval_adventure.mp3"
+        },
+        "cleopatra adventure":{
+            "file": "musics/cleopatra_adventure.mp3"
+        },
+        "naruto epic fight":{
+            "file": "musics/naruto_fight.mp3"
+        },
+        "irish pub":{
+            "file": "music/irish_pub.mp3"
+        },
+        "medieval shop":{
+            "file": "music/medieval_shop.mp3"
+        },
+        "oriental shop":{
+            "file": "music/oriental_shop.mp3"
+        }
+    },
+    "music contexts":{
+        "main":{
+            "musics":[
+                {
+                    "music": "quiet zelda adventure",
+                    "volume": 50
+                },
+                {
+                    "music": "medieval adventure",
+                    "volume": 50
+                }
+            ]
+        }
+    },
+    "transitions":{
+        "default":{
+            "time": 10,
+            "play":{}
+        },
+        "door":{
+            "time": 1,
+            "play":{
+                "door": 0
+            }
+        },
+        "shop":{
+            "time": 1,
+            "play":{
+                "door":0,
+                "shop bell":0
+            }
+        }
+    },
+    "places":{
+        "default":{
+            "ambience":{
+            },
+            "ambience modifiers":{
+            }
+        },
+        "shop":{
+            "ambiance":{
+                "writing":{
+                    "volume": 50,
+                    "interval": [30, 100]
+                },
+                "wood squeeking":{
+                    "volume": 30,
+                    "interval": [30, 100]
+                },
+                "steps on wood":{
+                    "volume": 30,
+                    "interval": [30, 100]
+                },
+                "pages turned":{
+                    "volume": 50,
+                    "interval": [30, 100]
+                }
+            },
+            "ambiance modifiers":{
+                "winter": {
+                    "fireplace":{
+                        "volume": 40,
+                        "interval": [0,0]
+                    }
+                }
+            },
+            "music override":{
+                "main":{
+                    "music": "medieval shop",
+                    "volume": 50
+                }
+            }
+        }
+    },
+    "regions":{
+        "default":{
+            "sounds override":{},
+            "music contexts override":{},
+            "places override":{}
+        },
+        "oriental":{
+            "sounds override":{
+                "shop bell":{
+                    "files": [
+                        "sounds/shop_chimes.mp3"
+                    ]
+                },
+                "birds":{
+                    "files":[
+                        "sounds/exotic_birds.mp3"
+                    ]
+                }
+            },
+            "music contexts override":{
+                "main":{
+                    "musics":[
+                        {
+                            "music": "cleopatra adventure",
+                            "volume": 50
+                        }
+                    ]
+                }
+            },
+            "places override":{
+                "shop":{
+                    "music override":{
+                        "main":{
+                            "music": "oriental shop",
+                            "volume": 50
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
