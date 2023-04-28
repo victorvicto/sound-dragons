@@ -16,7 +16,7 @@ Les regions peuvent également modifier les places (ou en ajouter).
     music theme name:[ -> multiple songs, one of them will be picked at random
         {
             "file": string to file,
-            "volume": int from 0 to 100
+            "volume": float from 0.0 to 1.0
         }
     ]
 },
@@ -25,7 +25,8 @@ Les regions peuvent également modifier les places (ou en ajouter).
         "time": int for fondu time in seconds,
         "play": {
             sound name:{
-                "timing": num seconds before playing sound
+                "timing": num seconds before playing sound,
+                "volume": float from 0.0 to 1.0
             }
         }
     }
@@ -34,13 +35,13 @@ Les regions peuvent également modifier les places (ou en ajouter).
     name of context("main", "scary fight", "mystery",...):{
         "theme":{
             "name": theme name,
-            "volume mul": int from 0 to 100
+            "volume mul": float from 0.0 to 1.0
         },
         "theme modifiers":{
             name of modifier("day", "night", "winter",...):{
                 "theme":{
                     "name": theme name,
-                    "volume mul": int from 0 to 100
+                    "volume mul": float from 0.0 to 1.0
                 },
             }
         }
@@ -50,7 +51,7 @@ Les regions peuvent également modifier les places (ou en ajouter).
     place name:{ -> one of the places will be called "default"
         "ambience":{
             sound name:{
-                "volume": num from 0 to 100,
+                "volume": float from 0.0 to 1.0,
                 "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
             }
         },
@@ -58,7 +59,7 @@ Les regions peuvent également modifier les places (ou en ajouter).
             name of modifier("day", "night", "winter",...):{
                 "changes":{
                     sound name:{ -> if sound name not in "ambiance" add it -> to remove sound, set volume to 0
-                        "volume": int from 0 to 100,
+                        "volume": float from 0.0 to 1.0,
                         "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
                     }
                 }
@@ -68,13 +69,13 @@ Les regions peuvent également modifier les places (ou en ajouter).
             name of context("main", "scary fight", "mystery",...):{
                 "theme":{
                     "name": theme name,
-                    "volume mul": int from 0 to 100
+                    "volume mul": float from 0.0 to 1.0
                 },
                 "theme modifiers":{
                     name of modifier("day", "night", "winter",...):{
                         "theme":{
                             "name": theme name,
-                            "volume mul": int from 0 to 100
+                            "volume mul": float from 0.0 to 1.0
                         },
                     }
                 }
@@ -95,7 +96,7 @@ Les regions peuvent également modifier les places (ou en ajouter).
             music theme name:[ -> multiple songs, one of them will be picked at random
                 {
                     "file": string to file,
-                    "volume": int from 0 to 100
+                    "volume": float from 0.0 to 1.0
                 }
             ]
         },

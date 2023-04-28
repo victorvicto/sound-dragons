@@ -100,6 +100,10 @@ var sound_lore = {
             "time": 10,
             "play":{}
         },
+        "instant":{
+            "time": 0,
+            "play": {}
+        },
         "door":{
             "time": 1,
             "play":{
