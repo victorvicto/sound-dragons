@@ -1,7 +1,5 @@
 var current_howls = []
 
-function restart_sound()
-
 function transition(time){
     var new_howls = {};
     for (const [key, value] of Object.entries(sound_lore["places"][place]["ambiance"])){
