@@ -25,6 +25,34 @@ function get_sound_file_name(sound_name){
     }
 }
 
+function update_howl(howl, sound_name, sound_info){
+    howl.off('end');
+    howl.on('end', () => { // TODO check if it works to use key and value inside function
+        let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]); // TODO pick a time at random
+        console.log(sound_name + " sound ended, setting timeout to play sound again in "+interval_time+" seconds.");
+        setTimeout(() => {
+            console.log("Timeout done, playing "+sound_name+" sound.");
+            self.play();
+        }, interval_time);
+    });
+}
+
+function new_sound_howl(sound_name, file_name, sound_info){
+    return new Howl({
+        src: [file_name],
+        volume: 0.0,
+        html5: true,
+        onend: () => { // TODO check if it works to use key and value inside function
+            let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]); // TODO pick a time at random
+            console.log(sound_name + " sound ended, setting timeout for in "+interval_time+" seconds.");
+            setTimeout(() => {
+                console.log("Timeout done, playing "+sound_name+" sound.");
+                self.play();
+            }, interval_time);
+        }
+    });
+}
+
 function transition(transition_time){
 
     // GETTING RID OF SOUNDS NOT IN NEW AMBIENCE OR THAT DON'T HAVE THE SAME FILE
@@ -44,32 +72,15 @@ function transition(transition_time){
     // STARTING NEW SOUNDS
     for (const [sound_name, sound_info] of Object.entries(sound_lore["places"][place]["ambiance"])){
         var file_name = get_sound_file_name(sound_name);
-        if (sound_name in sound_howls){
-            sound_howls[sound_name].onend = () => { // TODO check if it works to use key and value inside function
-                    let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]); // TODO pick a time at random
-                    console.log(sound_name + " sound ended, setting timeout for in "+interval_time+" seconds.");
-                    setTimeout(() => {
-                        console.log("Timeout done, playing "+sound_name+" sound.");
-                        sound_howls[sound_name].play();
-                    }, interval_time*1000);
-                };
-            
+        if ((sound_name in sound_howls) && (file_name in sound_howls[sound_name])){
+            update_howl(sound_howls[sound_name][file_name], sound_name, sound_info);
         } else {
-            var howl = new Howl({
-                src: [file],
-                volume: 0.0,
-                html5: true,
-                onend: () => { // TODO check if it works to use key and value inside function
-                    let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]); // TODO pick a time at random
-                    console.log(sound_name + " sound ended, setting timeout for in "+interval_time+" seconds.");
-                    setTimeout(() => {
-                        console.log("Timeout done, playing "+sound_name+" sound.");
-                        sound_howls[sound_name].play();
-                    }, interval_time*1000);
-                }
-            });
-            howl.fade(0.0, sound_info["volume"], transition_time*1000);
-            sound_howls[sound_name] = howl;
+            var new_howl = new_sound_howl(sound_name, file_name, sound_info);
+            new_howl.fade(0.0, sound_info["volume"], transition_time);
+            if (!(sound_name in sound_howls)){
+                sound_howls[sound_name] = {};
+            }
+            sound_howls[sound_name][file_name] = new_howl;
             setTimeout(()=>{
                 sound_howls[sound_name].play();
             }, sound_info["interval"][0]);
