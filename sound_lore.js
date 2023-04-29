@@ -59,11 +59,11 @@ var sound_lore = {
         "main adventure":[
             {
                 "file": "musics/quiet_zelda_adventure.mp3",
-                "volume": 50
+                "volume": 0.5
             },
             {
                 "file": "musics/medieval_adventure.mp3",
-                "volume": 50
+                "volume": 0.5
             }
         ],
         "naruto epic fight":{
@@ -72,19 +72,19 @@ var sound_lore = {
         "irish pub":[
             {
                 "file": "music/irish_pub.mp3",
-                "volume": 50
+                "volume": 0.5
             }
         ],
         "shop":[
             {
                 "file": "music/medieval_shop.mp3",
-                "volume": 50
+                "volume": 0.5
             }
         ],
         "calm night":[
             {
                 "file": "music/calm_night.mp3",
-                "volume": 50
+                "volume": 0.5
             }
         ],
     },
@@ -97,7 +97,7 @@ var sound_lore = {
     },
     "transitions":{
         "default":{
-            "time": 10,
+            "time": 10000,
             "play":{}
         },
         "instant":{
@@ -105,13 +105,13 @@ var sound_lore = {
             "play": {}
         },
         "door":{
-            "time": 1,
+            "time": 1000,
             "play":{
                 "door": 0
             }
         },
         "shop":{
-            "time": 1,
+            "time": 1000,
             "play":{
                 "door":0,
                 "shop bell":0
@@ -137,26 +137,26 @@ var sound_lore = {
         "shop":{
             "ambiance":{
                 "writing":{
-                    "volume": 50,
-                    "interval": [30, 100]
+                    "volume": 0.5,
+                    "interval": [15000, 30000]
                 },
                 "wood squeeking":{
-                    "volume": 30,
-                    "interval": [30, 100]
+                    "volume": 0.3,
+                    "interval": [15000, 30000]
                 },
                 "steps on wood":{
-                    "volume": 30,
-                    "interval": [30, 100]
+                    "volume": 0.3,
+                    "interval": [15000, 30000]
                 },
                 "pages turned":{
-                    "volume": 50,
-                    "interval": [30, 100]
+                    "volume": 0.5,
+                    "interval": [15000, 30000]
                 }
             },
             "ambiance modifiers":{
                 "winter": {
                     "fireplace":{
-                        "volume": 40,
+                        "volume": 0.4,
                         "interval": [0,0]
                     }
                 }
@@ -189,13 +189,13 @@ var sound_lore = {
                 "main adventure":[
                     {
                         "file": "musics/cleopatra.mp3",
-                        "volume": 50
+                        "volume": 0.5
                     }
                 ],
                 "shop":[
                     {
                         "file": "musics/riental_shop.mp3",
-                        "volume": 50
+                        "volume": 0.5
                     }
                 ]
             }
