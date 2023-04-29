@@ -50,7 +50,7 @@ var sound_lore = {
         },
         "steps on wood":{
             "files": [
-                "sounds/steps on wood.mp3"
+                "sounds/steps_on_wood.mp3"
             ],
             "quicksound category": "indoors"
         }
