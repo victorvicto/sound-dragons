@@ -22,10 +22,10 @@ Les regions peuvent également modifier les places (ou en ajouter).
 },
 "transitions":{
     transition name:{
-        "time": int for fondu time in seconds,
+        "time": int for fondu time in miliseconds,
         "play": {
             sound name:{
-                "timing": num seconds before playing sound,
+                "timing": num miliseconds before playing sound,
                 "volume": float from 0.0 to 1.0
             }
         }
@@ -52,7 +52,7 @@ Les regions peuvent également modifier les places (ou en ajouter).
         "ambience":{
             sound name:{
                 "volume": float from 0.0 to 1.0,
-                "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
+                "interval": [min num milisec of delay before replaying, max num milisec of delay before replaying] -> [0,0]=loop
             }
         },
         "ambience modifiers":{
@@ -60,7 +60,7 @@ Les regions peuvent également modifier les places (ou en ajouter).
                 "changes":{
                     sound name:{ -> if sound name not in "ambiance" add it -> to remove sound, set volume to 0
                         "volume": float from 0.0 to 1.0,
-                        "interval": [min num sec of delay before replaying, max num sec of delay before replaying] -> [0,0]=loop
+                        "interval": [min num milisec of delay before replaying, max num milisec of delay before replaying] -> [0,0]=loop
                     }
                 }
             }

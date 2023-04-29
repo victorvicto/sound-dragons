@@ -83,11 +83,11 @@
             "musics":[
                 {
                     "music": "quiet zelda adventure",
-                    "volume": 50
+                    "volume": 0.5
                 },
                 {
                     "music": "medieval adventure",
-                    "volume": 50
+                    "volume": 0.5
                 }
             ]
         }
@@ -121,26 +121,26 @@
         "shop":{
             "ambiance":{
                 "writing":{
-                    "volume": 50,
+                    "volume": 0.5,
                     "interval": [30, 100]
                 },
                 "wood squeeking":{
-                    "volume": 30,
+                    "volume": 0.3,
                     "interval": [30, 100]
                 },
                 "steps on wood":{
-                    "volume": 30,
+                    "volume": 0.3,
                     "interval": [30, 100]
                 },
                 "pages turned":{
-                    "volume": 50,
+                    "volume": 0.5,
                     "interval": [30, 100]
                 }
             },
             "ambiance modifiers":{
                 "winter": {
                     "fireplace":{
-                        "volume": 40,
+                        "volume": 0.4,
                         "interval": [0,0]
                     }
                 }
@@ -148,7 +148,7 @@
             "music override":{
                 "main":{
                     "music": "medieval shop",
-                    "volume": 50
+                    "volume": 0.5
                 }
             }
         }
@@ -177,7 +177,7 @@
                     "musics":[
                         {
                             "music": "cleopatra adventure",
-                            "volume": 50
+                            "volume": 0.5
                         }
                     ]
                 }
@@ -187,7 +187,7 @@
                     "music override":{
                         "main":{
                             "music": "oriental shop",
-                            "volume": 50
+                            "volume": 0.5
                         }
                     }
                 }
