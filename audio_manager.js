@@ -19,16 +19,16 @@ function fade_out_sound(howl, fade_time, sound_name, file_name){
 
 function get_sound_file_name(sound_name){
     if (sound_name in sound_lore["regions"][region]["sounds override"]){
-        return sound_lore["regions"][region]["sounds override"][key]["files"][0];
+        return sound_lore["regions"][region]["sounds override"][sound_name]["files"][0];
     } else {
-        return sound_lore["sounds"][key]["files"][0];
+        return sound_lore["sounds"][sound_name]["files"][0];
     }
 }
 
 function update_howl(howl, sound_name, sound_info){
     howl.off('end');
-    howl.on('end', () => { // TODO check if it works to use key and value inside function
-        let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]); // TODO pick a time at random
+    howl.on('end', () => {
+        let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]);
         console.log(sound_name + " sound ended, setting timeout to play sound again in "+interval_time+" seconds.");
         setTimeout(() => {
             console.log("Timeout done, playing "+sound_name+" sound.");
@@ -42,8 +42,8 @@ function new_sound_howl(sound_name, file_name, sound_info){
         src: [file_name],
         volume: 0.0,
         html5: true,
-        onend: () => { // TODO check if it works to use key and value inside function
-            let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]); // TODO pick a time at random
+        onend: () => {
+            let interval_time = getRandomArbitrary(sound_info["interval"][0], sound_info["interval"][1]);
             console.log(sound_name + " sound ended, setting timeout for in "+interval_time+" seconds.");
             setTimeout(() => {
                 console.log("Timeout done, playing "+sound_name+" sound.");
@@ -104,8 +104,8 @@ var test_howl = new Howl({
     src: ["musics/piano_loop.wav"],
     volume: 1.0,
     html5: true,
-    onend: () => { // TODO check if it works to use key and value inside function
-        let interval_time = 3; // TODO pick a time at random
+    onend: () => {
+        let interval_time = 3;
         setTimeout(() => {
             self.play();
         }, interval_time*1000);

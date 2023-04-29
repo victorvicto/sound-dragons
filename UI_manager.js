@@ -114,6 +114,7 @@ for (const [transition_name, transition_info] of Object.entries(sound_lore["tran
     but.type = "button";
     transitions_container.appendChild(but);
     but.onclick = ()=>{
+        console.log("transitioning "+transition_name);
         transition(transition_info["time"]);
         for (const [sound_to_play_name, sound_to_play_info] of Object.entries(transition_info["play"])){
             setTimeout(()=>{

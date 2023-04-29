@@ -171,7 +171,10 @@ var sound_lore = {
         }
     },
     "regions":{
-        "default":{},
+        "default":{
+            "sounds override":{},
+            "themes override":{}
+        },
         "oriental":{
             "sounds override":{
                 "shop bell":{
