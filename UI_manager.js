@@ -106,11 +106,19 @@ update_music_contexts();
 update_modifiers();
 
 var transitions_container = document.getElementById("transitions-container");
-for (const [key, value] of Object.entries(sound_lore["transitions"])){
+for (const [transition_name, transition_info] of Object.entries(sound_lore["transitions"])){
     var but = document.createElement("button");
-    but.innerText = capitalise(key);
+    but.innerText = capitalise(transition_name);
     but.classList.add("btn");
     but.classList.add("btn-primary");
     but.type = "button";
     transitions_container.appendChild(but);
+    but.onclick = ()=>{
+        transition(transition_info["time"]);
+        for (const [sound_to_play_name, sound_to_play_info] of Object.entries(transition_info["play"])){
+            setTimeout(()=>{
+                play_punctual_sound(sound_to_play_name, sound_to_play_info["volume"]);
+            }, sound_to_play_info["timing"]);
+        }
+    };
 }
