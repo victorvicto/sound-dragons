@@ -74,7 +74,7 @@ function update_music_contexts(){
 function update_modifiers(){
     var modifiers_container = document.getElementById("modifiers-container");
     modifiers_container.innerHTML = "";
-    generate_radio_button("modifier", modifiers_container, "no modifier", true);
+    generate_radio_button("modifier", modifiers_container, "no modifier", true, change_modifier);
     if ("theme modifiers" in sound_lore["music contexts"][music_context]){
         for (const [key, value] of Object.entries(sound_lore["music contexts"][music_context]["theme modifiers"])){
             generate_radio_button("modifier", modifiers_container, key, false, change_modifier);

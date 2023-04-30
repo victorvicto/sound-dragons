@@ -92,7 +92,7 @@ function transition(transition_time){
             }
             sound_howls[sound_name][file_name] = new_howl;
             setTimeout(()=>{
-                sound_howls[sound_name].play();
+                sound_howls[sound_name][file_name].play();
             }, sound_info["interval"][0]);
         }
     }
