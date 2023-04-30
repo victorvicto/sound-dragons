@@ -8,7 +8,7 @@ var sound_lore = {
         },
         "birds":{
             "files": [
-                "sounds/birds.mp3"
+                "sounds/birds.wav"
             ],
             "quicksound category": "long"
         },

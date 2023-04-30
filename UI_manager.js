@@ -116,10 +116,17 @@ for (const [transition_name, transition_info] of Object.entries(sound_lore["tran
     but.onclick = ()=>{
         console.log("transitioning "+transition_name);
         transition(transition_info["time"]);
+        var howl_list = [];
         for (const [sound_to_play_name, sound_to_play_info] of Object.entries(transition_info["play"])){
             setTimeout(()=>{
-                play_punctual_sound(sound_to_play_name, sound_to_play_info["volume"]);
+                var h = play_punctual_sound(sound_to_play_name, sound_to_play_info["volume"]);
+                howl_list.push(h);
             }, sound_to_play_info["timing"]);
         }
+        setTimeout(()=>{
+            for (var h of howl_list){
+                h.unload();
+            }
+        }, transition_info["time"]+5000);
     };
 }

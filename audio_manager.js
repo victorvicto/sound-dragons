@@ -57,12 +57,10 @@ function play_punctual_sound(sound_name, volume){
     var file_name = get_sound_file_name(sound_name);
     var howl = new Howl({
         src: [file_name],
-        volume: volume,
-        onend: () => {
-            self.unload();
-        }
+        volume: volume
     });
     howl.play();
+    return howl;
 }
 
 function transition(transition_time){
