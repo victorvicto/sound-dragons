@@ -1,4 +1,6 @@
-var sound_howls = {} // Each sound has an entry in the dict. In each entry is a dictionary with one howl per file
+var sound_howls = {}; // Each sound has an entry in the dict. In each entry is a dictionary with one howl per file
+var theme_howl = None;
+var theme_file_name = "";
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -14,7 +16,15 @@ function fade_out_sound(howl, fade_time, sound_name, file_name){
             console.log("Sound "+sound_name+" has no more howls, deleting it.");
             delete sound_howls[sound_name];
         }
-    })
+    }, fade_time);
+}
+
+function fade_out_theme(howl, fade_time){
+    howl.fade(howl.volume(), 0.0, fade_time);
+    setTimeout(()=>{
+        console.log("Unloading previous theme.");
+        howl.unload();
+    }, fade_time);
 }
 
 function get_sound_file_name(sound_name){
@@ -23,6 +33,36 @@ function get_sound_file_name(sound_name){
     } else {
         return sound_lore["sounds"][sound_name]["files"][0];
     }
+}
+
+function get_theme_file_name(theme_name){
+    if (theme_name in sound_lore["regions"][region]["themes override"]){
+        return sound_lore["regions"][region]["themes override"][theme_name][0]["file"];
+    } else {
+        return sound_lore["themes"][theme_name][0]["file"];
+    }
+}
+
+function get_required_theme(){
+    var required_theme = sound_lore["music contexts"][music_context]["theme"];
+    if (modifier in sound_lore["music contexts"][music_context]["theme modifiers"]){
+        required_theme = sound_lore["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
+    }
+
+    var places_to_check = [sound_lore["places"][place]];
+    if (("places_override" in sound_lore["regions"][region]) && (place in sound_lore["regions"][region]["places_override"])){
+        places_to_check.push(sound_lore["regions"][region]["places_override"][place]);
+    }
+
+    for(var p of places_to_check){
+        if (music_context in p["music contexts"]){
+            required_theme = p["music contexts"][music_context]["theme"];
+            if (modifier in p["music contexts"][music_context]["theme modifiers"]){
+                required_theme = p["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
+            }
+        }
+    }
+
 }
 
 function update_howl(howl, sound_name, sound_info){
@@ -95,6 +135,23 @@ function transition(transition_time){
                 sound_howls[sound_name][file_name].play();
             }, sound_info["interval"][0]);
         }
+    }
+
+    // TRANSITIONING THEME IF NEEDED
+    var required_theme = get_required_theme();
+    var required_them_file_name = get_theme_file_name(required_theme["name"]);
+    if (theme_file_name != required_them_file_name){
+        old_theme_howl = theme_howl;
+        theme_file_name = required_them_file_name;
+        theme_howl = new Howl({
+            src: [file_name],
+            loop: true,
+            volume: 0.0,
+            html5: true,
+        });
+        fade_out_theme(old_theme_howl, transition_time);
+        theme_howl.play();
+        theme_howl.fade(0.0, required_theme["volume"], transition_time);
     }
 }
 

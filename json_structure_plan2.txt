@@ -102,7 +102,7 @@ Les regions peuvent également modifier les places (ou en ajouter).
         },
         ("places override":{ -> À mettre en place par la suite
             place name:{
-                *same as in places, but every part is optional*
+                *same as in places*
             }
         })
     }
