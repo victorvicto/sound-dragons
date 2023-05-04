@@ -58,32 +58,32 @@ var sound_lore = {
     "themes":{
         "main adventure":[
             {
-                "file": "musics/quiet_zelda_adventure.mp3",
+                "file": "/musics/quiet_zelda_adventure.mp3",
                 "volume": 0.5
             },
             {
-                "file": "musics/medieval_adventure.mp3",
+                "file": "/musics/medieval_adventure.mp3",
                 "volume": 0.5
             }
         ],
         "naruto epic fight":{
-            "file": "musics/naruto_fight.mp3"
+            "file": "/musics/naruto_fight.mp3"
         },
         "irish pub":[
             {
-                "file": "music/irish_pub.mp3",
+                "file": "/musics/irish_pub.mp3",
                 "volume": 0.5
             }
         ],
         "shop":[
             {
-                "file": "music/medieval_shop.mp3",
+                "file": "/musics/hearthstone.mp3",
                 "volume": 0.5
             }
         ],
         "calm night":[
             {
-                "file": "music/calm_night.mp3",
+                "file": "/musics/calm_night.mp3",
                 "volume": 0.5
             }
         ],

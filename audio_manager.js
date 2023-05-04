@@ -1,5 +1,5 @@
 var sound_howls = {}; // Each sound has an entry in the dict. In each entry is a dictionary with one howl per file
-var theme_howl = None;
+var theme_howl = null;
 var theme_file_name = "";
 
 function getRandomArbitrary(min, max) {
@@ -7,6 +7,9 @@ function getRandomArbitrary(min, max) {
 }
 
 function fade_out_sound(howl, fade_time, sound_name, file_name){
+    if (howl == undefined){
+        return;
+    }
     howl.fade(howl.volume(), 0.0, fade_time);
     setTimeout(()=>{
         console.log("Unloading "+file_name+" in "+sound_name+" sound.");
@@ -20,6 +23,9 @@ function fade_out_sound(howl, fade_time, sound_name, file_name){
 }
 
 function fade_out_theme(howl, fade_time){
+    if (howl == null){
+        return;
+    }
     howl.fade(howl.volume(), 0.0, fade_time);
     setTimeout(()=>{
         console.log("Unloading previous theme.");
@@ -43,9 +49,17 @@ function get_theme_file_name(theme_name){
     }
 }
 
+function get_theme_volume(theme_name){
+    if (theme_name in sound_lore["regions"][region]["themes override"]){
+        return sound_lore["regions"][region]["themes override"][theme_name][0]["volume"];
+    } else {
+        return sound_lore["themes"][theme_name][0]["volume"];
+    }
+}
+
 function get_required_theme(){
     var required_theme = sound_lore["music contexts"][music_context]["theme"];
-    if (modifier in sound_lore["music contexts"][music_context]["theme modifiers"]){
+    if (("theme modifiers" in sound_lore["music contexts"][music_context]) && (modifier in sound_lore["music contexts"][music_context]["theme modifiers"])){
         required_theme = sound_lore["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
     }
 
@@ -56,13 +70,17 @@ function get_required_theme(){
 
     for(var p of places_to_check){
         if (music_context in p["music contexts"]){
-            required_theme = p["music contexts"][music_context]["theme"];
-            if (modifier in p["music contexts"][music_context]["theme modifiers"]){
-                required_theme = p["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
+            if ("theme" in p["music contexts"][music_context]){
+                required_theme = p["music contexts"][music_context]["theme"];
+            }
+            if ("theme modifiers" in p["music contexts"][music_context]){
+                if (modifier in p["music contexts"][music_context]["theme modifiers"]){
+                    required_theme = p["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
+                }
             }
         }
     }
-
+    return required_theme;
 }
 
 function update_howl(howl, sound_name, sound_info){
@@ -139,20 +157,24 @@ function transition(transition_time){
 
     // TRANSITIONING THEME IF NEEDED
     var required_theme = get_required_theme();
-    var required_them_file_name = get_theme_file_name(required_theme["name"]);
-    if (theme_file_name != required_them_file_name){
+    var required_theme_file_name = get_theme_file_name(required_theme["name"]);
+    var required_theme_volume = get_theme_volume(required_theme["name"]);
+    if (theme_file_name != required_theme_file_name){
         old_theme_howl = theme_howl;
-        theme_file_name = required_them_file_name;
+        theme_file_name = required_theme_file_name;
         theme_howl = new Howl({
-            src: [file_name],
+            src: [theme_file_name],
             loop: true,
             volume: 0.0,
             html5: true,
         });
         fade_out_theme(old_theme_howl, transition_time);
         theme_howl.play();
-        theme_howl.fade(0.0, required_theme["volume"], transition_time);
+        console.log("Fading "+theme_file_name+" from 0 to "+required_theme_volume+" in "+transition_time+" miliseconds");
+        console.log(theme_howl);
+        theme_howl.fade(0.0, required_theme_volume, transition_time);
     }
+    console.log(theme_file_name);
 }
 
 var test_howl = new Howl({
