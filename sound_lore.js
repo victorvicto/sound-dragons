@@ -66,9 +66,12 @@ var sound_lore = {
                 "volume": 0.5
             }
         ],
-        "naruto epic fight":{
-            "file": "/musics/naruto_fight.mp3"
-        },
+        "naruto epic fight":[
+            {
+                "file": "/musics/naruto_fight.mp3",
+                "volume": 0.5
+            }
+        ],
         "irish pub":[
             {
                 "file": "/musics/irish_pub.mp3",
@@ -91,7 +94,18 @@ var sound_lore = {
     "music contexts":{
         "main":{
             "theme":{
-                "name": "main adventure"
+                "name": "main adventure",
+                "volume mul": 1,
+                "from start": false
+            },
+            "theme modifiers":{
+                "night":{
+                    "theme":{
+                        "name": "calm night",
+                        "volume mul": 1,
+                        "from start": false
+                    }
+                }
             }
         }
     },
@@ -122,17 +136,7 @@ var sound_lore = {
         "default":{
             "ambiance":{},
             "ambiance modifiers":{},
-            "music contexts":{
-                "main":{
-                    "theme modifiers":{
-                        "night":{
-                            "theme":{
-                                "name": "calm night"
-                            }
-                        }
-                    }
-                }
-            }
+            "music contexts":{},
         },
         "shop":{
             "ambiance":{
@@ -164,8 +168,11 @@ var sound_lore = {
             "music contexts":{
                 "main":{
                     "theme":{
-                        "name": "shop"
-                    }
+                        "name": "shop",
+                        "volume mul": 1,
+                        "from start": true
+                    },
+                    "theme modifiers":{}
                 }
             }
         }

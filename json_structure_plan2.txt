@@ -35,13 +35,15 @@ Les regions peuvent également modifier les places (ou en ajouter).
     name of context("main", "scary fight", "mystery",...):{
         "theme":{
             "name": theme name,
-            "volume mul": float from 0.0 to 1.0
+            "volume mul": float from 0.0 to 1.0,
+            "from start": true or false -> false means theme starts at random place
         },
         "theme modifiers":{
             name of modifier("day", "night", "winter",...):{
                 "theme":{
                     "name": theme name,
-                    "volume mul": float from 0.0 to 1.0
+                    "volume mul": float from 0.0 to 1.0,
+                    "from start": true or false -> false means theme starts at random place
                 },
             }
         }
@@ -69,13 +71,15 @@ Les regions peuvent également modifier les places (ou en ajouter).
             name of context("main", "scary fight", "mystery",...):{
                 "theme":{
                     "name": theme name,
-                    "volume mul": float from 0.0 to 1.0
+                    "volume mul": float from 0.0 to 1.0,
+                    "from start": true or false -> false means theme starts at random place
                 },
                 "theme modifiers":{
                     name of modifier("day", "night", "winter",...):{
                         "theme":{
                             "name": theme name,
-                            "volume mul": float from 0.0 to 1.0
+                            "volume mul": float from 0.0 to 1.0,
+                            "from start": true or false -> false means theme starts at random place
                         },
                     }
                 }
