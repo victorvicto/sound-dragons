@@ -59,7 +59,7 @@ function get_theme_volume(theme_name){
 
 function get_required_theme(){
     var required_theme = sound_lore["music contexts"][music_context]["theme"];
-    if (("theme modifiers" in sound_lore["music contexts"][music_context]) && (modifier in sound_lore["music contexts"][music_context]["theme modifiers"])){
+    if (modifier in sound_lore["music contexts"][music_context]["theme modifiers"]){
         required_theme = sound_lore["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
     }
 
@@ -70,13 +70,9 @@ function get_required_theme(){
 
     for(var p of places_to_check){
         if (music_context in p["music contexts"]){
-            if ("theme" in p["music contexts"][music_context]){
-                required_theme = p["music contexts"][music_context]["theme"];
-            }
-            if ("theme modifiers" in p["music contexts"][music_context]){
-                if (modifier in p["music contexts"][music_context]["theme modifiers"]){
-                    required_theme = p["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
-                }
+            required_theme = p["music contexts"][music_context]["theme"];
+            if (modifier in p["music contexts"][music_context]["theme modifiers"]){
+                required_theme = p["music contexts"][music_context]["theme modifiers"][modifier]["theme"];
             }
         }
     }
