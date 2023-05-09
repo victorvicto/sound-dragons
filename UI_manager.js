@@ -49,7 +49,7 @@ function generate_radio_button(id_base, parent, text, active, funct){
     parent.appendChild(i);
     var l = document.createElement("label");
     l.classList.add("btn");
-    l.classList.add("btn-outline-primary");
+    l.classList.add("btn-outline-secondary");
     l.classList.add("mt-1");
     l.htmlFor = i.id;
     l.innerText = capitalise(text);
@@ -110,7 +110,7 @@ for (const [transition_name, transition_info] of Object.entries(sound_lore["tran
     var but = document.createElement("button");
     but.innerText = capitalise(transition_name);
     but.classList.add("btn");
-    but.classList.add("btn-primary");
+    but.classList.add("btn-secondary");
     but.type = "button";
     transitions_container.appendChild(but);
     but.onclick = ()=>{
